@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HBProfile>
+	<Name>Grand Black War Mammoth Run By Zayedx</Name>
+
+	<MinFreeBagSlots>-1</MinFreeBagSlots>
+	<MinLevel>80</MinLevel>
+	<MaxLevel>2000</MaxLevel>
+	<MinFreeBagSlots>-1</MinFreeBagSlots>
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>true</SellBlue>
+	<SellPurple>False</SellPurple>
+	<ProtectedItems></ProtectedItems>
+
+	<AvoidMobs>
+	<Mob Name="Risen Archmage" Entry="37868"></Mob> 
+	</AvoidMobs>
+	
+	<QuestOrder>
+	<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="10" KillBetweenHotspots="True"/>
+	
+	<!-- We are not on Pandaria/Dalaran/Northrend or VoA | Thanks to Rabbit112 and anrew -->
+	<If Condition="Me.MapId != 6553 &amp;&amp; Me.MapId != 571 &amp;&amp; Me.MapId != 624">
+	<CustomBehavior File="RunMacro" Macro="/use Hearthstone"/>
+	<CustomBehavior File="RunMacro" Macro="/use The Innkeeper's Daughter"/>
+	<CustomBehavior File="RunMacro" Macro="/cast Astral Recall"/>
+	<CustomBehavior File="RunMacro" Macro="/cast Dark Portal"/>
+	<CustomBehavior File="WaitTimer" WaitTime="15000"/>
+	</If>
+	
+	<!-- Alliance -->
+	<If Condition="Me.IsAlliance" >
+	<!-- If we are on Pandaria / Shrine of Seven Stars -->
+	<While Condition="Me.ZoneId == 6553">  
+	<CustomBehavior File="Message" Text="Going to Dalaran Portal" LogColor="Lime"/>
+	<RunTo X="822.610" Y="204.830" Z="519.350"/>
+	<CustomBehavior File="InteractWith" MobId="215121" ObjectType="Gameobject" Range="2"/>
+	<CustomBehavior File="WaitTimer" WaitTime="10000" GoalText="Waiting for zone {TimeRemaining}"/>
+	</While>
+	</If>
+	
+	<!-- Horde -->
+	<If Condition="Me.IsHorde" >
+	<!-- If we are on Pandaria / Shrine of Seven Stars
+	<While Condition="Me.ZoneId == 6141">  
+    <CustomBehavior File="Message" Text="Going to Dalaran Portal" LogColor="Lime"></CustomBehavior>
+    <RunTo X="1746.364" Y="900.6077" Z="487.1399"></RunTo>
+    <CustomBehavior File="InteractWith" MobId="215112" ObjectType="Gameobject" Range="2"></CustomBehavior>
+    <CustomBehavior File="WaitTimer" WaitTime="10000" GoalText="Waiting for zone {TimeRemaining}"></CustomBehavior> 
+	</While> -->
+	<CustomBehavior File="Message" Text="Sorry not Yet ready for Horde!" LogColor="Lime"/>
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Sorry not Yet ready for Horde!"/>
+	
+	</If>
+	
+	<!-- Dalaran -->
+	<If Condition="Me.MapId == 571">
+	<CustomBehavior File="Message" Text="Going to Instance!" LogColor="Lime"/>
+	<CustomBehavior File="MyCTM" X="5803.952" Y="625.156" Z="647.7519" />
+	<!-- This for those who can Fly 
+	<CustomBehavior File="FlyTo" X="5784.621" Y="710.8499" Z="697.5714" />
+	<CustomBehavior File="FlyTo" X="5714.943" Y="750.5025" Z="641.7693" />
+	-->
+	<RunTo X="5784.621" Y="710.8499" Z="697.5714" />
+	<RunTo X="5714.943" Y="750.5025" Z="641.7693" />
+	<RunTo X="5688.666" Y="771.5195" Z="647.7327" />
+	<!-- <CustomBehavior File="MyCTM" X="5803.952" Y="625.156" Z="647.7519" /> -->
+	<CustomBehavior File="InteractWith" MobId="193772" ObjectType="Gameobject" Range="2"></CustomBehavior>
+	<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}"/>    
+	<CustomBehavior File="MyCTM" X="5391.196" Y="2832.284" Z="418.6753" />
+	<CustomBehavior File="WaitTimer" WaitTime="1000" GoalText="Waiting for zone {TimeRemaining}"/> 
+	<CustomBehavior File="InteractWith" MobId="191575" ObjectType="Gameobject" Range="2"></CustomBehavior>
+	<CustomBehavior File="WaitTimer" WaitTime="1000" GoalText="Waiting for zone {TimeRemaining}"/> 
+	<CustomBehavior File="MyCTM" X="5430.129" Y="2814.633" Z="418.6756" />
+	<CustomBehavior File="MyCTM" X="5461.807" Y="2819.446" Z="418.6756" />
+	<CustomBehavior File="MyCTM" X="5491.504" Y="2847.306" Z="420.7715" />
+	<CustomBehavior File="WaitTimer" WaitTime="10000" GoalText="Waiting for zone {TimeRemaining}"/>  
+	</If>                  
+
+	<!-- In VoA - Instance -->
+	<While Condition="Me.MapId == 624">  
+	<If Condition="Me.ZoneId == 4603">
+
+	<!-- Going to Koralon the Flame Watcher-->
+	<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="10" KillBetweenHotspots="True" UseFlightPaths="False"/>
+	<CustomBehavior File="Message" Text="Going to Koralon the Flame Watcher" LogColor="Lime"/>
+	<RunTo X="-255.9845" Y="-103.0066" Z="104.3369" />
+	<RunTo X="-218.2884" Y="-73.00939" Z="102.8333" />
+	<RunTo X="-220.7011" Y="77.83712" Z="91.46609" />
+	
+	<!-- Koralon the Flame Watcher -->
+	<While Condition="Object(35013, o => o.ToUnit().IsAlive) != null ">
+	<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="35013" ObjectType="Npc" Range="1"/>
+	<CustomBehavior File="WaitTimer" WaitTime="1500"/>  
+	</While> 
+	<If Condition="Object(35013, o => o.ToUnit().IsDead) != null ">
+	<CustomBehavior File="Message" Text="Koralon the Flame Watcher is Dead!" LogColor="Lime"/>
+	<CustomBehavior File="InteractWith" MobId="35013" WaitForNpcs="true" MobState="Dead" InteractByLooting="true" Range="1"/>   
+	</If>
+
+	<!-- Going to Emalon the Storm Watcher --> 
+	<CustomBehavior File="Message" Text="Going to Emalon the Storm Watcher" LogColor="Lime"/>
+	<RunTo X="-220.7535" Y="-61.33625" Z="104.2988" />
+	<RunTo X="-218.857" Y="-143.5312" Z="104.3022" />
+	<RunTo X="-218.6365" Y="-254.7209" Z="94.01245" />
+
+	<!--  Emalon the Storm Watcher -->
+	<If Condition="Object(33993, o => o.ToUnit().IsAlive) != null ">
+	<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="33993" ObjectType="Npc" Range="1"/>
+	<CustomBehavior File="WaitTimer" WaitTime="1500"/>
+	</If>
+	<If Condition="Object(33993, o => o.ToUnit().IsDead) != null ">
+	<CustomBehavior File="Message" Text="Emalon the Storm Watcher is Dead!" LogColor="Lime"/> 
+	<CustomBehavior File="InteractWith" MobId="33993" WaitForNpcs="false" MobState="Dead" InteractByLooting="true" Range="1"/>  
+	</If>
+	
+	<!-- Going to Toravon the Ice Watcher --> 
+	<CustomBehavior File="Message" Text="Going to Toravon the Ice Watcher" LogColor="Lime"/>
+	<RunTo X="-218.3316" Y="-131.9936" Z="102.9586" />
+	<RunTo X="-187.2864" Y="-103.7414" Z="104.3593" />
+	<RunTo X="-77.33015" Y="-107.1298" Z="104.0071" />
+	<RunTo X="-42.67657" Y="-143.8501" Z="104.0041" />
+	<RunTo X="-42.76161" Y="-266.1177" Z="91.44799" />
+	
+	<!-- Toravon the Ice Watcher -->
+	<If Condition="Object(38433, o => o.ToUnit().IsAlive) != null ">
+	<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="38433" ObjectType="Npc" Range="1"/>
+	<CustomBehavior File="WaitTimer" WaitTime="1500"/>
+	</If>
+	<If Condition="Object(38433, o => o.ToUnit().IsDead) != null ">
+	<CustomBehavior File="Message" Text="Toravon the Ice Watcher is Dead!" LogColor="Lime"/> 
+	<CustomBehavior File="InteractWith" MobId="38433" WaitForNpcs="false" MobState="Dead" InteractByLooting="true" Range="1"/>  
+	</If>
+
+	<!-- Going to Archavon the Stone Watcher --> 
+	<CustomBehavior File="Message" Text="Going to Archavon the Stone Watcher" LogColor="Lime"/>
+	<RunTo X="-41.96502" Y="-140.3636" Z="104.0026" />
+	<RunTo X="-8.076058" Y="-102.9152" Z="104.0624" />
+	<RunTo X="116.9166" Y="-101.6873" Z="91.50553" />
+
+	<!-- Archavon the Stone Watcher -->
+	<If Condition="Object(31125, o => o.ToUnit().IsAlive) != null ">
+	<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="31125" ObjectType="Npc" Range="1"/>
+	<CustomBehavior File="WaitTimer" WaitTime="1500"/>
+	</If>
+	<If Condition="Object(31125, o => o.ToUnit().IsDead) != null ">
+	<CustomBehavior File="Message" Text="Archavon the Stone Watcher is Dead!" LogColor="Lime"/> 
+	<CustomBehavior File="InteractWith" MobId="31125" WaitForNpcs="false" MobState="Dead" InteractByLooting="true" Range="1"/>  
+	</If>	
+	
+	<!-- Leaving -->
+	<CustomBehavior File="Message" Text="Killed them all, its time to leave." LogColor="Lime"/>
+	<RunTo X="-16.68826" Y="-102.575" Z="102.6797" />
+	<RunTo X="-79.08609" Y="-103.1678" Z="104.0444" />
+	<RunTo X="-220.0732" Y="-83.9454" Z="102.909" />
+	<RunTo X="-275.3152" Y="-100.911" Z="103.5074" />
+	<RunTo X="-508.3798" Y="-103.0822" Z="156.9996" />
+	<CustomBehavior File="MyCTM" X="-515.8934" Y="-102.9808" Z="156.9996" />
+	<CustomBehavior File="WaitTimer" WaitTime="10000" GoalText="Waiting for zone {TimeRemaining}"/> 
+	</If> 
+	</While>
+		<!-- Going back to Dalaran -->
+		<CustomBehavior File="Message" Text="Going back to Dalaran!." LogColor="Lime"/>
+		<CustomBehavior File="MyCTM" X="5485.52" Y="2840.14" Z="420.037" />
+		<CustomBehavior File="MyCTM" X="5448.119" Y="2868.728" Z="418.6755" />
+		<CustomBehavior File="MyCTM" X="5418.598" Y="2868.47" Z="418.6755" />
+		<CustomBehavior File="InteractWith" MobId="194012" ObjectType="Gameobject" Range="2"></CustomBehavior>
+		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Done"/>
+	
+ 	</QuestOrder>
+</HBProfile>
